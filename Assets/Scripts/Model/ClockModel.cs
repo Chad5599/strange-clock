@@ -1,6 +1,11 @@
 ﻿using System;
 
-public class ClockModel : IClockModel
+namespace Clock
 {
-	public DateTime time { get; set; }
+
+    public class ClockModel : IClockModel
+    {
+        public long time { get; set; }
+    }
+
 }

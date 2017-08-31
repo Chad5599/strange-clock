@@ -1,6 +1,11 @@
 ﻿using strange.extensions.promise.api;
 
-public interface IClockService  
+namespace Clock
 {
-	IPromise<string> GetTime();
+	
+    public interface IClockService
+    {
+        IPromise<string> GetTime();
+    }
+
 }

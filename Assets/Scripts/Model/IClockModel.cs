@@ -2,7 +2,12 @@
 
 using strange.extensions.command.impl;
 
-public interface IClockModel
+namespace Clock
 {
-	DateTime time { get; set; }
+
+    public interface IClockModel
+    {
+        long time { get; set; }
+    }
+
 }

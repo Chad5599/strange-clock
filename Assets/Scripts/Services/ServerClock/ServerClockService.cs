@@ -3,30 +3,33 @@
 using strange.extensions.promise.api;
 using strange.extensions.promise.impl;
 
-public class ServerClockService : IClockService
+namespace Clock
 {
-	public IClockModel model{ get; set; }
 
-	private IPromise<string> promise;
+    public class ServerClockService : IClockService
+    {
+        [Inject] public IClockModel model{ get; set; }
 
-	public IPromise<string> GetTime()
-	{
-		promise = new Promise<string>();
+        private IPromise<string> promise;
 
-		ServerClockAPI.instance.SendGetTimeRequest(OnGetTime);
-		return promise;
-	}
+        public IPromise<string> GetTime()
+        {
+            promise = new Promise<string>();
 
-	private void OnGetTime(string status)
-	{
-		promise.Dispatch(status);
+            ServerClockAPI.instance.SendGetTimeRequest(OnGetTime);
+            return promise;
+        }
 
-		if (status == "success") {
-			Debug.Log ("I am a success");
-		} else if (status == "failure") {
-			Debug.Log ("I am a failure");
+        private void OnGetTime(long milliseconds)
+        {
+            model.time = milliseconds;
+            //saving data in Model Class
+		
 
-		}
+            promise.Dispatch("success");
+            //promise status dispatch back to GetTimeInCommand
 
-	}
+        }
+    }
+
 }

@@ -1,25 +1,43 @@
-﻿using strange.extensions.command.impl;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GetTimeInCommand : Command {
-
-
-	public IClockModel clockModel{ get; set; }
+using strange.extensions.command.impl;
+using strange.extensions.signal.impl;
 
 
-	public IClockService service{ get; set; }
 
-	override public void Execute()
-	{
-		Retain ();
-		service.GetTime().Then(OnGettingTime);
+namespace Clock
+{
 
-	}
+    public class GetTimeInCommand : Command
+    {
+		
+	
+        [Inject] public IClockModel clockModel{ get; set; }
+        [Inject] public IClockService service{ get; set; }
+        [Inject] public UpdateTimeSignal updateTimeSignal { get; set;}
 
-	private void OnGettingTime(string status)
-	{
+        override public void Execute()
+        {
+			
+			
+            Retain();
+            service.GetTime().Then(OnGettingTime);
+
+        }
+
+        private void OnGettingTime(string status)
+        {
+
+            Debug.Log("The time is : " + clockModel.time);
+		
+            updateTimeSignal.Dispatch(clockModel.time);
+            //getTimeSignal.Dispatch(clockModel.time);
+            //dispatching signal to mediator of view
 		
 		
-		Release ();
-	}
+            Release();
+        }
+    }
+
+
 }
