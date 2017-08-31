@@ -2,9 +2,6 @@
 
 namespace Clock
 {
-
     public class PressButtonSignal : Signal {}
-
     public class UpdateTimeSignal : Signal<long> {}
-
 }

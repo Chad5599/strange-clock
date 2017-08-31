@@ -3,22 +3,15 @@ using UnityEngine;
 
 using strange.extensions.context.impl;
 
-
 namespace Clock
 {
-	
-    public class BootstrapClock :  ContextView
-    {
+	  public class BootstrapClock :  ContextView
+   		{
 
-
-
-        void Awake()
+		void Awake()
         {
             this.context = new ClockContext(this);
 
         }
-	
-    }
-		
-
+	 }
 }

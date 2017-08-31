@@ -2,10 +2,8 @@
 
 namespace Clock
 {
-	
     public interface IClockService
     {
         IPromise<string> GetTime();
     }
-
 }

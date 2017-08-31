@@ -5,7 +5,6 @@ using strange.extensions.promise.impl;
 
 namespace Clock
 {
-
     public class ServerClockService : IClockService
     {
         [Inject] public IClockModel model{ get; set; }
@@ -22,14 +21,8 @@ namespace Clock
 
         private void OnGetTime(long milliseconds)
         {
-            model.time = milliseconds;
-            //saving data in Model Class
-		
-
+            model.time = milliseconds;//saving time to model
             promise.Dispatch("success");
-            //promise status dispatch back to GetTimeInCommand
-
         }
     }
-
 }

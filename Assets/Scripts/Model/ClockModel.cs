@@ -2,10 +2,8 @@
 
 namespace Clock
 {
-
-    public class ClockModel : IClockModel
+	 public class ClockModel : IClockModel
     {
         public long time { get; set; }
     }
-
 }
