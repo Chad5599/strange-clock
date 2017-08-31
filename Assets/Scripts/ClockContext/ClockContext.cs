@@ -30,7 +30,7 @@ namespace Clock
             injectionBinder.Bind<IClockModel>().To<ClockModel>().ToSingleton();
             injectionBinder.Bind<IClockService>().To<ServerClockService>().ToSingleton();
             
-			mediationBinder.Bind<ClockView>().To<ClockMediator>();
+			mediationBinder.Bind<ClockView2D>().To<ClockMediator>();
             
 			commandBinder.Bind<GetTimeSignal>().To<GetTimeCommand>();
         }

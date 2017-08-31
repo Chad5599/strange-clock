@@ -8,7 +8,7 @@ using strange.extensions.signal.impl;
 
 namespace Clock
 {
-    public class ClockView : View
+    public class ClockView2D : View
     {
         public Button getTimeButton;
         public Text time;
@@ -18,12 +18,12 @@ namespace Clock
         internal void Init()
         {
             getTimeButton.onClick.AddListener(OnGetTimeButtonClicked);
-            UpdateTime(0);
+			UpdateTime(new DateTime());
         }
 
-        public void UpdateTime(long value)
+		public void UpdateTime(DateTime dateTime)
         {
-            time.text = value.ToString();
+			time.text = dateTime.ToString("hh:mm:ss tt");
         }
 
         private void OnGetTimeButtonClicked()

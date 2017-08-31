@@ -552,11 +552,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1071209663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9000da347fa324893857a02fdc42f4a8, type: 3}
+  m_Script: {fileID: 11500000, guid: cc978db2c4aa94f8e9b0f8ab78a4f7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   getTimeButton: {fileID: 352336107}
-  showTimeText: {fileID: 210616670}
+  time: {fileID: 210616670}
 --- !u!1 &1193569400
 GameObject:
   m_ObjectHideFlags: 0

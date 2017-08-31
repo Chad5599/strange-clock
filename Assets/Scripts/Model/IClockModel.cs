@@ -1,7 +1,9 @@
-﻿namespace Clock
+﻿using System;
+
+namespace Clock
 {
     public interface IClockModel
     {
-        long time { get; set; }
+        DateTime time { get; set; }
     }
 }

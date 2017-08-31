@@ -25,9 +25,7 @@ public class ServerClockAPI
         DateTime time = DateTime.Now;
         yield return new WaitForSeconds(.05f);
 
-        DateTime dt1970 = new DateTime(1970, 1, 1);
-        long milliseconds = (long)(time - dt1970).TotalMilliseconds;
+		long milliseconds = (long)(time - TimeUtil.UNIX_EPOCH).TotalMilliseconds;
         successCallback(milliseconds);
-
     }
 }

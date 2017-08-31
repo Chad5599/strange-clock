@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
@@ -8,7 +9,7 @@ namespace Clock
     public class ClockMediator : Mediator
     {
         [Inject] public GetTimeSignal getTimeSignal { get; set; }
-        [Inject] public ClockView view { get; set; }
+        [Inject] public ClockView2D view { get; set; }
 
         public override void OnRegister()
         {
@@ -27,9 +28,9 @@ namespace Clock
         }
 
         [ListensTo(typeof(UpdateTimeSignal))]
-        private void OnUpdateTime(long milliseconds)
+		private void OnUpdateTime(DateTime dateTime)
         {
-            view.UpdateTime(milliseconds);
+            view.UpdateTime(dateTime);
         }
     }
 }

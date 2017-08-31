@@ -1,7 +1,9 @@
-﻿using strange.extensions.signal.impl;
+﻿using System;
+
+using strange.extensions.signal.impl;
 
 namespace Clock
 {
     public class GetTimeSignal : Signal {}
-    public class UpdateTimeSignal : Signal<long> {}
+    public class UpdateTimeSignal : Signal<DateTime> {}
 }
