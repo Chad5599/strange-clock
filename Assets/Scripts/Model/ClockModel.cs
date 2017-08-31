@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Clock
+﻿namespace Clock
 {
-	 public class ClockModel : IClockModel
-    {
-        public long time { get; set; }
-    }
+	public class ClockModel : IClockModel
+	{
+		public long time { get; set; }
+	}
 }

@@ -5,33 +5,31 @@ using strange.extensions.signal.impl;
 
 namespace Clock
 {
-    public class ClockViewMediator : Mediator
+    public class ClockMediator : Mediator
     {
-        [Inject] public PressButtonSignal pressButtonSignal { get; set; }
+        [Inject] public GetTimeSignal getTimeSignal { get; set; }
         [Inject] public ClockView view { get; set; }
- 
-        public Signal pressSignal = new Signal();
 
         public override void OnRegister()
         {
             view.Init();
-            view.buttonClickedSignal.AddListener(OnPressButton);
+            view.getTimeButtonClickedSignal.AddListener(OnGetTimeButtonClicked);
         }
 
         public override void OnRemove()
         {
-            view.buttonClickedSignal.RemoveListener(OnPressButton);
+            view.getTimeButtonClickedSignal.RemoveListener(OnGetTimeButtonClicked);
         }
 
-        private void OnPressButton()
+        private void OnGetTimeButtonClicked()
         {
-            pressButtonSignal.Dispatch();
+            getTimeSignal.Dispatch();
         }
 
         [ListensTo(typeof(UpdateTimeSignal))]
         private void OnUpdateTime(long milliseconds)
         {
-            view.SetTime(milliseconds);
+            view.UpdateTime(milliseconds);
         }
     }
 }

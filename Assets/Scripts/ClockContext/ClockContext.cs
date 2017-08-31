@@ -1,9 +1,10 @@
 ﻿using System;
+
 using UnityEngine;
 
-using strange.extensions.context.impl;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
+using strange.extensions.context.impl;
 
 namespace Clock
 {
@@ -28,8 +29,10 @@ namespace Clock
             injectionBinder.Bind<UpdateTimeSignal>().ToSingleton();
             injectionBinder.Bind<IClockModel>().To<ClockModel>().ToSingleton();
             injectionBinder.Bind<IClockService>().To<ServerClockService>().ToSingleton();
-            mediationBinder.Bind<ClockView>().To<ClockViewMediator>();
-            commandBinder.Bind<PressButtonSignal>().To<GetTimeInCommand>();
+            
+			mediationBinder.Bind<ClockView>().To<ClockMediator>();
+            
+			commandBinder.Bind<GetTimeSignal>().To<GetTimeCommand>();
         }
     }
 }

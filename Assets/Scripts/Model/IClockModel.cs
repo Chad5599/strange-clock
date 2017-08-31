@@ -1,8 +1,4 @@
-﻿using System;
-
-using strange.extensions.command.impl;
-
-namespace Clock
+﻿namespace Clock
 {
     public interface IClockModel
     {

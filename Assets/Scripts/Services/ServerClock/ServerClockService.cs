@@ -7,7 +7,7 @@ namespace Clock
 {
     public class ServerClockService : IClockService
     {
-        [Inject] public IClockModel model{ get; set; }
+        [Inject] public IClockModel clockModel { get; set; }
 
         private IPromise<string> promise;
 
@@ -21,8 +21,8 @@ namespace Clock
 
         private void OnGetTime(long milliseconds)
         {
-            model.time = milliseconds;//saving time to model
-            promise.Dispatch("success");
+            clockModel.time = milliseconds;
+            promise.Dispatch("success"); // Server result is success.
         }
     }
 }

@@ -1,37 +1,34 @@
 ﻿using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
 
-
-
 namespace Clock
 {
-
     public class ClockView : View
     {
-
         public Button getTimeButton;
-        public Text showTimeText;
+        public Text time;
 
-        public Signal buttonClickedSignal = new Signal();
+        public Signal getTimeButtonClickedSignal = new Signal();
 
         internal void Init()
         {
-            getTimeButton.onClick.AddListener(onClickButton);
-            SetTime(0);
+            getTimeButton.onClick.AddListener(OnGetTimeButtonClicked);
+            UpdateTime(0);
         }
 
-        public void SetTime(long value)
+        public void UpdateTime(long value)
         {
-            showTimeText.text = value.ToString();
+            time.text = value.ToString();
         }
 
-        private void onClickButton()
+        private void OnGetTimeButtonClicked()
         {
-            buttonClickedSignal.Dispatch();
+            getTimeButtonClickedSignal.Dispatch();
         }
   	}
 }
