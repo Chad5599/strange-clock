@@ -3,27 +3,48 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
+using strange.extensions.mediation.impl;
 
 namespace Clock
 {
-    public class DigitalClockView : View
+	public class DigitalClockView  : View , IClockView
     {
+		public Text timeText;
         public Button getTimeButton;
-        public Text time;
-
         public Signal getTimeButtonClickedSignal = new Signal();
 
-        internal void Init()
+		private bool clockStart = false;
+
+		DateTime time = DateTime.MinValue;
+
+		void FixedUpdate ()
+		{
+			if (clockStart) 
+			{
+				time = time.AddSeconds (.02);
+				timeText.text = time.ToString("hh:mm:ss tt");
+			}
+		}
+
+		public Signal GetTimeButtonClickedSignal
+		{
+			get
+			{ 
+				return getTimeButtonClickedSignal;
+			}
+		}
+
+		public void Init()
         {
             getTimeButton.onClick.AddListener(OnGetTimeButtonClicked);
-			UpdateTime(new DateTime());
         }
 
 		public void UpdateTime(DateTime dateTime)
         {
-			time.text = dateTime.ToString("hh:mm:ss tt");
+			time = dateTime;
+			timeText.text = dateTime.ToString("hh:mm:ss tt");
+			clockStart = true;
         }
 
         private void OnGetTimeButtonClicked()

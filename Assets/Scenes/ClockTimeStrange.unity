@@ -213,7 +213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.26000023}
+  m_AnchoredPosition: {x: -0.39, y: -1.66}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &150487310
@@ -368,7 +368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 00:00:00
 --- !u!222 &210616671
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -863,8 +863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b883e2cbcfe04d5485b6e84675bb684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeText: {fileID: 210616670}
   getTimeButton: {fileID: 352336107}
-  time: {fileID: 210616670}
 --- !u!1 &1193569400
 GameObject:
   m_ObjectHideFlags: 0

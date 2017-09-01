@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
 
-using strange.extensions.mediation.impl;
 using strange.extensions.signal.impl;
+using strange.extensions.mediation.impl;
 
 namespace Clock
 {
-	public class analogueClock3DView : View
+	public class analogueClock3DView : View , IClockView
 	{
 		public Button getTimeButton;
-		public Signal getTimeButtonClickedSignal = new Signal();
 		public Transform hours, minutes, seconds;
+		public Signal getTimeButtonClickedSignal = new Signal();
 
 		private const float
 		hoursToDegrees = 360f / 12f,
@@ -24,18 +22,30 @@ namespace Clock
 
 		DateTime time = DateTime.MinValue;
 
-		void Update ()
+		void FixedUpdate ()
 		{
 			if (clockStart) 
 			{
+				float analogueHours = ((time.Hour - 12f) + (time.Minute / 60f) + (time.Second / 3600f));
+				float analogueMinutes = (time.Minute + (time.Second / 60f));
+				float analogueSeconds = time.Second;
+
 				time = time.AddSeconds (.02);
-				hours.localRotation = Quaternion.Euler (0f, 0f, time.Hour * -hoursToDegrees);
-				minutes.localRotation = Quaternion.Euler (0f, 0f, time.Minute * -minutesToDegrees);
-				seconds.localRotation = Quaternion.Euler (0f, 0f, time.Second * -secondsToDegrees);
+				hours.localRotation = Quaternion.Euler (0f, 0f, analogueHours * -hoursToDegrees);
+				minutes.localRotation = Quaternion.Euler (0f, 0f, analogueMinutes * -minutesToDegrees);
+				seconds.localRotation = Quaternion.Euler (0f, 0f, analogueSeconds * -secondsToDegrees);
+				}
+		}
+
+		public Signal GetTimeButtonClickedSignal
+		{
+			get
+			{ 
+				return getTimeButtonClickedSignal;
 			}
 		}
 
-		internal void Init()
+		public void Init()
 		{
 			getTimeButton.onClick.AddListener(OnGetTimeButtonClicked);
 		}

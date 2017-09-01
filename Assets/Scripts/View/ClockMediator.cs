@@ -9,17 +9,17 @@ namespace Clock
     public class ClockMediator : Mediator
     {
         [Inject] public GetTimeSignal getTimeSignal { get; set; }
-		[Inject] public analogueClock3DView view { get; set; }
+		[Inject] public IClockView view { get; set; }
 
         public override void OnRegister()
         {
             view.Init();
-            view.getTimeButtonClickedSignal.AddListener(OnGetTimeButtonClicked);
+            view.GetTimeButtonClickedSignal.AddListener(OnGetTimeButtonClicked);
         }
 
         public override void OnRemove()
         {
-            view.getTimeButtonClickedSignal.RemoveListener(OnGetTimeButtonClicked);
+            view.GetTimeButtonClickedSignal.RemoveListener(OnGetTimeButtonClicked);
         }
 
         private void OnGetTimeButtonClicked()

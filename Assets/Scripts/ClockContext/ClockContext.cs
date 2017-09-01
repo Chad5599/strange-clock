@@ -29,11 +29,9 @@ namespace Clock
             injectionBinder.Bind<UpdateTimeSignal>().ToSingleton();
             injectionBinder.Bind<IClockModel>().To<ClockModel>().ToSingleton();
             injectionBinder.Bind<IClockService>().To<ServerClockService>().ToSingleton();
-            
-			//mediationBinder.Bind<DigitalClockView>().To<ClockMediator>();
-			//mediationBinder.Bind<analogueClock2DView>().To<ClockMediator>();
-			mediationBinder.Bind<analogueClock3DView>().To<ClockMediator>();
 		
+			mediationBinder.Bind<analogueClock2DView>().ToAbstraction<IClockView>().To<ClockMediator>();
+
 			commandBinder.Bind<GetTimeSignal>().To<GetTimeCommand>();
         }
     }
