@@ -8,7 +8,7 @@ using strange.extensions.signal.impl;
 
 namespace Clock
 {
-    public class ClockView2D : View
+    public class DigitalClockView : View
     {
         public Button getTimeButton;
         public Text time;
